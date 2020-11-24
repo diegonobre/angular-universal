@@ -175,5 +175,8 @@
       }
     }
   },
-  "defaultProject": "angular-ssr"
+  "defaultProject": "angular-ssr",
+  "cli": {
+    "analytics": false
+  }
 }

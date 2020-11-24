@@ -4,7 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { Book } from './book';
 import { Injectable } from '@angular/core';
 
-const apiUrl = 'http://192.168.0.7/book';
+const apiUrl = 'http://localhost:4000/book';
 
 @Injectable({
   providedIn: 'root'

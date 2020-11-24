@@ -30,6 +30,7 @@
     "@types/mongoose": "^5.7.32",
     "cors": "^2.8.5",
     "express": "^4.15.2",
+    "memory-cache": "^0.2.0",
     "mongoose": "^5.9.25",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
