@@ -24,7 +24,7 @@ export class ServerStateInterceptor implements HttpInterceptor {
         if (event instanceof HttpResponse) {
           this.transferState.set(makeStateKey(req.url), event.body);
           this.ngZone.runOutsideAngular(() => {
-            memoryCache.put(req.url, event.body, 1000 * 60);
+            memoryCache.put(req.url, event.body, 1000 * 30);
           });
         }
       })

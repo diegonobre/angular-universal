@@ -1,17 +1,17 @@
 import 'zone.js/dist/zone-node';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
+import * as mongoose from 'mongoose';
+import * as cors from 'cors';
 import { join } from 'path';
-
-import { AppServerModule } from './src/main.server';
-import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 
-import * as mongoose from 'mongoose';
-import { BookRoute } from './routes/book-route';
+import { AppServerModule } from './src/main.server';
 
-import * as cors from 'cors';
+import { BookRoute } from './routes/book-route';
+import { UserRoute } from './routes/user-route';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -19,6 +19,7 @@ export function app(): express.Express {
   const distFolder = join(process.cwd(), 'dist/angular-ssr/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
   const bookRoute: BookRoute = new BookRoute();
+  const userRoute: UserRoute = new UserRoute();
 
   mongoose.connect('mongodb://localhost/angular-ssr', { useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true })
   .then(() =>  console.log('connection successful'))
@@ -38,6 +39,7 @@ export function app(): express.Express {
   server.use(cors());
 
   bookRoute.bookRoute(server);
+  userRoute.userRoute(server);
 
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
